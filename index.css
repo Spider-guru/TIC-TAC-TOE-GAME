@@ -1,0 +1,110 @@
+body {
+	height: 99dvh;
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	width: 100%;
+	margin: 0px;
+	position: relative;
+}
+.board {
+	display: grid;
+	grid-template-columns: auto auto auto;
+	margin-left: auto;
+	margin-right: auto;
+	width: 350px;
+	height: 400px;
+}
+.cell {
+	border: 1px solid;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+}
+
+.cell:nth-child(3n + 1) {
+	border-left: none;
+}
+
+.cell:nth-child(3n + 3) {
+	border-right: none;
+}
+
+.cell:nth-child(1n + 7) {
+	border-bottom: none;
+}
+
+.cell:not(:nth-child(1n + 4)) {
+	border-top: none;
+}
+
+.board .x::after {
+	content: "";
+	background-color: red;
+	height: 10px;
+	width: 80%;
+	transform: rotate(45deg);
+	transform-origin: center;
+	display: block;
+	position: absolute;
+}
+
+.board .x::before {
+	content: "";
+	background-color: red;
+	height: 10px;
+	transform: rotate(-45deg);
+	transform-origin: center;
+	display: block;
+	width: 80%;
+	position: absolute;
+}
+
+.board .o::after {
+	content: "";
+	/* background-color: green; */
+	border: 10px solid green;
+	display: block;
+	height: 50%;
+	width: 55%;
+	position: absolute;
+	border-radius: 50%;
+}
+.header {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	align-items: center;
+	border-bottom: 5px solid;
+	width: 80%;
+	margin: auto auto 3rem auto;
+	border-radius: 10px;
+}
+.gameInfo {
+	display: none;
+	top: 0;
+	position: absolute;
+	width: 100dvw;
+	height: 101%;
+	background-color: rgba(0, 0, 0, 0.535);
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+.gameInfo > p {
+	color: white;
+	font-style: italic;
+	font-weight: 800;
+	font-size: 1.2rem;
+}
+
+.rStartBtn {
+	padding: 1rem 2rem;
+	border-radius: 5px;
+	border: none;
+	font-weight: 800;
+	cursor: pointer;
+	letter-spacing: 1px;
+	font-size: 15px;
+}
