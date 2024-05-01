@@ -28,15 +28,12 @@ let restartProcess = () => {
   cells.forEach((item) => item.classList.remove("o"));
   map = ["", "", "", "", "", "", "", "", ""];
   gameStart = true;
+  click = 'x'
 };
 
 let updateOtherData = () => {
   numOfMoves--;
   remMoveDisp.textContent = `${numOfMoves}`;
-
-  if (gameStart == false) {
-    gamePanel.style.display = "flex";
-  }
 };
 
 let indicateCellClicked = (cell, param) => {
@@ -88,19 +85,27 @@ let hasOWon = () => {
 };
 
 let checkWinner = () => {
+
+  updateOtherData();
+
   if (hasXWon()) {
     message.textContent = `${info.winMsg("X")}`;
     gameStart = false;
+    gamePanel.style.display = "flex";
   }
   if (hasOWon()) {
     console.log("winner is o");
     message.textContent = `${info.winMsg("O")}`;
     gameStart = false;
+    gamePanel.style.display = "flex";
   }
-  if (numOfMoves == 0 && gameStart == false) {
-    message.textContent = `${info.tieMsg("x")}`;
+  if (numOfMoves == 0 && gameStart == true) {
+    message.textContent = `${info.tieMsg()}`;
+    gameStart = false
+    gamePanel.style.display = "flex";
+    console.log('tie', gameStart)
   }
-  updateOtherData();
+
 };
 
 let checkIfClickedAlready = (cell) => {
@@ -132,7 +137,7 @@ let handleClick = (item, index) => {
   }
 };
 
-console.log(message);
+
 //event listeners declaration
 cells.forEach((item, index) => {
   item.addEventListener("click", () => handleClick(item, index));
